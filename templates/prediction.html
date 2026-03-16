@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Crime Analytics & Prediction System</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Tailwind CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
+</head>
+
+<body class="bg-gradient-to-br from-gray-900 via-gray-800 to-black text-gray-200 min-h-screen">
+
+<!-- ================= NAVBAR ================= -->
+<header class="bg-gradient-to-r from-indigo-600 to-purple-700 shadow-2xl">
+    <div class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
+        <div>
+            <h1 class="text-3xl font-extrabold tracking-wide">
+                📈 Crime Analytics & Prediction System
+            </h1>
+            <p class="text-sm opacity-90">
+                Big Data driven analysis of crime trends using predictive analytics
+            </p>
+        </div>
+        <span class="px-4 py-1 bg-black bg-opacity-30 rounded-full text-sm">
+            Big Data Dashboard
+        </span>
+    </div>
+</header>
+
+<!-- ================= MAIN ================= -->
+<main class="max-w-7xl mx-auto px-6 py-12">
+
+    <!-- ===== INPUT PANEL ===== -->
+    <div class="bg-gray-800 rounded-3xl shadow-2xl p-10 mb-12 border border-gray-700">
+        <h2 class="text-2xl font-bold mb-2 flex items-center gap-2">
+            🎯 Crime Prediction Parameters
+        </h2>
+        <p class="text-sm text-gray-400 mb-6">
+            Select historical parameters to forecast crime trends using Big Data analytics.
+        </p>
+
+        <form action="{{ url_for('crime.predict_result') }}" method="POST"
+              class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+            <!-- CITY -->
+            <div>
+                <label class="block mb-2 text-sm text-gray-400">
+                    <i class="fas fa-city mr-1"></i> City
+                </label>
+                <select name="city" required
+                        class="w-full p-3 rounded-xl bg-gray-700 border border-gray-600 text-white focus:ring-2 focus:ring-indigo-500">
+                    <option value="">Select City</option>
+                    <option value="0">Ahmedabad</option>
+                    <option value="1">Bengaluru</option>
+                    <option value="2">Chennai</option>
+                    <option value="3">Coimbatore</option>
+                    <option value="4">Delhi</option>
+                    <option value="5">Ghaziabad</option>
+                    <option value="6">Hyderabad</option>
+                    <option value="7">Indore</option>
+                    <option value="8">Jaipur</option>
+                    <option value="9">Kanpur</option>
+                    <option value="10">Kochi</option>
+                    <option value="11">Kolkata</option>
+                    <option value="12">Kozhikode</option>
+                    <option value="13">Lucknow</option>
+                    <option value="14">Mumbai</option>
+                    <option value="15">Nagpur</option>
+                    <option value="16">Patna</option>
+                    <option value="17">Pune</option>
+                    <option value="18">Surat</option>
+                </select>
+            </div>
+
+            <!-- CRIME -->
+            <div>
+                <label class="block mb-2 text-sm text-gray-400">
+                    <i class="fas fa-exclamation-triangle mr-1"></i> Crime Type
+                </label>
+                <select name="crime" required
+                        class="w-full p-3 rounded-xl bg-gray-700 border border-gray-600 text-white focus:ring-2 focus:ring-purple-500">
+                    <option value="">Select Crime</option>
+                    <option value="9">Murder</option>
+                    <option value="8">Kidnapping</option>
+                    <option value="7">Economic Offences</option>
+                    <option value="6">Cyber Crimes</option>
+                    <option value="5">Crime against Women</option>
+                    <option value="4">Crime against Children</option>
+                    <option value="3">Crime against Senior Citizens</option>
+                    <option value="2">Crime against ST</option>
+                    <option value="1">Crime against SC</option>
+                    <option value="0">Crime by Juveniles</option>
+                </select>
+            </div>
+
+            <!-- YEAR -->
+            <div>
+                <label class="block mb-2 text-sm text-gray-400">
+                    <i class="fas fa-calendar-alt mr-1"></i> Year (Historical Data)
+                </label>
+                <select name="year" required
+                        class="w-full p-3 rounded-xl bg-gray-700 border border-gray-600 text-white focus:ring-2 focus:ring-pink-500">
+                    <option value="">Select Year</option>
+                    {% for y in range(2011, 2022) %}
+                    <option value="{{ y }}">{{ y }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <!-- BUTTON -->
+            <div class="md:col-span-3 text-center mt-6">
+                <button type="submit"
+                        class="px-14 py-3 rounded-full bg-gradient-to-r from-indigo-600 to-purple-600
+                               hover:from-purple-600 hover:to-indigo-600
+                               text-white font-bold shadow-xl transition transform hover:scale-105">
+                    🔮 Predict Crime Rate
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <!-- ===== ABOUT ENGINE ===== -->
+    <div class="bg-gray-800 rounded-3xl shadow-xl p-10 border border-gray-700">
+        <h2 class="text-2xl font-bold mb-4 flex items-center gap-2">
+            🧠 Big Data Prediction Engine
+        </h2>
+
+        <p class="text-gray-400 leading-relaxed">
+            This crime prediction system utilizes large-scale historical crime datasets (2011–2021),
+            population statistics, and categorical crime features. Using Big Data analytics and a
+            Decision Tree based predictive model, the system identifies crime patterns and forecasts
+            potential risk levels across major Indian cities.
+        </p>
+
+        <div class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+            <div class="bg-gray-700 p-5 rounded-xl">
+                <p class="text-sm text-gray-400">Analytics Model</p>
+                <p class="font-bold text-indigo-400 mt-1">
+                    Decision Tree (Supervised Learning)
+                </p>
+            </div>
+            <div class="bg-gray-700 p-5 rounded-xl">
+                <p class="text-sm text-gray-400">Data Scope</p>
+                <p class="font-bold text-green-400 mt-1">
+                    Multi-Year • Multi-City Dataset
+                </p>
+            </div>
+            <div class="bg-gray-700 p-5 rounded-xl">
+                <p class="text-sm text-gray-400">Objective</p>
+                <p class="font-bold text-yellow-400 mt-1">
+                    Crime Trend Forecasting
+                </p>
+            </div>
+        </div>
+    </div>
+
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer class="bg-black bg-opacity-80 mt-16">
+    <div class="max-w-7xl mx-auto px-6 py-6 text-center">
+        <p class="text-gray-500 text-sm">
+            © 2026 Crime Analytics & Prediction System | Big Data Analytics
+        </p>
+    </div>
+</footer>
+
+</body>
+</html>

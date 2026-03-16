@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Crime Detection and Prediction Using Big Data Analytics</title>
+
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+
+    <style>
+        body {
+            font-family: 'Georgia', serif;
+        }
+
+        /* 🔥 HERO BACKGROUND — IMAGE VISIBLE */
+        .hero-bg {
+            background:
+                linear-gradient(
+                    rgba(0, 0, 0, 0.45),
+                    rgba(0, 0, 0, 0.65)
+                ),
+                url("/static/uploads/crime-bg.jpg");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            min-height: 100vh;
+        }
+
+        /* 🌌 NAVBAR GLASS (NO BLACK STRIP) */
+        .navbar-glass {
+            background: linear-gradient(
+                to right,
+                rgba(15, 23, 42, 0.9),
+                rgba(45, 30, 80, 0.9)
+            );
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        /* 💎 GLASS CARDS */
+        .card {
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(10px);
+            border-radius: 1.25rem;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            transition: all 0.35s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px) scale(1.03);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6);
+            border-color: rgba(236, 72, 153, 0.6);
+        }
+
+        /* 🎨 GRADIENT BUTTON */
+        .btn-gradient {
+            background: linear-gradient(135deg, #ec4899, #8b5cf6);
+            transition: all 0.3s ease;
+        }
+
+        .btn-gradient:hover {
+            transform: scale(1.07);
+            box-shadow: 0 0 30px rgba(236, 72, 153, 0.7);
+        }
+    </style>
+</head>
+
+<body class="text-gray-200">
+
+<!-- ✅ NAVBAR -->
+<header class="navbar-glass w-full">
+    <div class="w-full px-6 py-8 flex justify-between items-center">
+        <h1 class="text-2xl font-bold text-purple-400">
+            Crime Detection & Prediction
+        </h1>
+        <span class="text-lg text-gray-300">Dashboard</span>
+    </div>
+</header>
+
+<!-- ✅ HERO SECTION -->
+<section class="hero-bg flex items-center">
+    <div class="max-w-7xl mx-auto px-6 text-center">
+
+        <h1 class="text-5xl font-extrabold text-white leading-tight drop-shadow-lg">
+            Crime Detection and Prediction
+            <span class="block text-purple-400 mt-2">
+                Using Big Data Analytics
+            </span>
+        </h1>
+
+        <p class="mt-6 max-w-3xl mx-auto text-lg text-gray-300">
+            A centralized platform to monitor crime incidents, analyze large-scale
+            historical data, and predict future crime patterns using
+            big data driven analytics.
+        </p>
+
+        <!-- ✅ CARDS -->
+        <div class="mt-16 grid grid-cols-1 md:grid-cols-2 gap-10">
+
+            <!-- LIVE DETECTION -->
+            <a href="/detection" class="card p-10 text-center shadow-xl">
+                <div class="text-blue-400 text-5xl mb-6">
+                    <i class="fas fa-video"></i>
+                </div>
+                <h2 class="text-3xl font-bold mb-4 text-white">
+                    Live Detection Feed
+                </h2>
+                <p class="text-gray-400 mb-6">
+                    Monitor live crime detection feeds and receive real-time
+                    alerts generated through video-based analysis.
+                </p>
+                <button class="btn-gradient px-8 py-3 rounded-full text-white font-semibold">
+                    Start Detection
+                </button>
+            </a>
+
+            <!-- CRIME PREDICTION -->
+            <a href="/crime/" class="card p-10 text-center shadow-xl">
+                <div class="text-green-400 text-5xl mb-6">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <h2 class="text-3xl font-bold mb-4 text-white">
+                    Crime Prediction
+                </h2>
+                <p class="text-gray-400 mb-6">
+                    Analyze historical crime data and forecast future crime
+                    hotspots using big data analytics and predictive models.
+                </p>
+                <button class="btn-gradient px-8 py-3 rounded-full text-white font-semibold">
+                    View Predictions
+                </button>
+            </a>
+
+        </div>
+    </div>
+</section>
+
+<!-- ✅ FOOTER -->
+<footer class="bg-black bg-opacity-80">
+    <div class="max-w-7xl mx-auto px-6 py-6 text-center">
+        <p class="text-gray-400 text-sm">
+            © 2026 Crime Detection and Prediction Using Big Data Analytics
+        </p>
+    </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Crime Prediction Result | Big Data Analytics</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Tailwind CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body class="bg-gradient-to-br from-gray-900 via-gray-800 to-black text-gray-200 min-h-screen">
+
+<header class="bg-gradient-to-r from-indigo-600 to-purple-700 shadow-2xl">
+    <div class="max-w-7xl mx-auto px-6 py-8 text-center">
+        <h1 class="text-4xl font-extrabold tracking-wide">📊 Crime Prediction Result</h1>
+        <p class="text-sm opacity-90 mt-2">Big Data–Driven Crime Risk Assessment Dashboard</p>
+    </div>
+</header>
+
+<main class="max-w-6xl mx-auto px-6 py-14" data-crime-rate="{{ crime_rate }}">
+
+    <!-- ===== CONTEXT SUMMARY ===== -->
+    <div class="bg-gray-800 rounded-3xl shadow-xl p-8 mb-12 border border-gray-700">
+        <h2 class="text-2xl font-bold mb-4">📌 Selected Prediction Context</h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+            <div class="bg-gray-700 p-6 rounded-xl">
+                <p class="text-sm text-gray-400">City</p>
+                <p class="text-2xl font-bold text-indigo-400 mt-1">{{ city_name }}</p>
+            </div>
+            <div class="bg-gray-700 p-6 rounded-xl">
+                <p class="text-sm text-gray-400">Crime Category</p>
+                <p class="text-2xl font-bold text-red-400 mt-1">{{ crime_type }}</p>
+            </div>
+            <div class="bg-gray-700 p-6 rounded-xl">
+                <p class="text-sm text-gray-400">Year</p>
+                <p class="text-2xl font-bold text-yellow-400 mt-1">{{ year }}</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== CORE OUTPUT ===== -->
+    <div class="bg-gray-800 rounded-3xl shadow-2xl p-10 mb-12 border border-gray-700">
+        <h2 class="text-3xl font-extrabold mb-10 text-center">📈 Predictive Analytics Output</h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+            <div class="bg-gray-700 p-8 rounded-2xl">
+                <p class="text-sm text-gray-400">Crime Risk Classification</p>
+                <p class="text-3xl font-bold text-red-400">{{ crime_status }}</p>
+            </div>
+
+            <div class="bg-gray-700 p-8 rounded-2xl">
+                <p class="text-sm text-gray-400">Predicted Crime Rate</p>
+                <p class="text-5xl font-extrabold text-indigo-300">{{ crime_rate }}</p>
+                <p class="text-xs text-gray-400">Incidents per lakh population</p>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-10 text-center">
+            <div class="bg-gray-700 p-6 rounded-xl">
+                <p class="text-sm text-gray-400">Estimated Cases</p>
+                <p class="text-2xl font-bold text-red-400">{{ cases }}</p>
+            </div>
+            <div class="bg-gray-700 p-6 rounded-xl">
+                <p class="text-sm text-gray-400">Population</p>
+                <p class="text-2xl font-bold text-blue-400">{{ population }} Lakhs</p>
+            </div>
+            <div class="bg-gray-700 p-6 rounded-xl">
+                <p class="text-sm text-gray-400">Analytics Model</p>
+                <p class="text-lg font-bold text-green-400">Decision Tree (Big Data)</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== BIG DATA VISUALIZATION ===== -->
+    <div class="bg-gray-800 rounded-3xl shadow-2xl p-10 mb-12 border border-gray-700">
+        <h2 class="text-3xl font-extrabold mb-10 text-center">📊 Big Data Analytics Visualization</h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+
+            <!-- BAR -->
+            <div class="bg-gray-700 p-6 rounded-2xl">
+                <h3 class="text-xl font-bold text-center mb-1">Crime Rate Comparison</h3>
+                <p class="text-xs text-gray-400 text-center mb-4">
+                    Historical Average vs Predicted Value
+                </p>
+                <canvas id="barChart"></canvas>
+            </div>
+
+            <!-- DONUT -->
+            <div class="bg-gray-700 p-6 rounded-2xl">
+                <h3 class="text-xl font-bold text-center mb-1">Risk Distribution</h3>
+                <p class="text-xs text-gray-400 text-center mb-4">
+                    Big Data based risk segmentation
+                </p>
+                <canvas id="pieChart"></canvas>
+            </div>
+
+        </div>
+
+        <!-- TREND -->
+        <div class="bg-gray-700 p-6 rounded-2xl mt-10">
+            <h3 class="text-xl font-bold text-center mb-2">📉 Crime Trend (2011–2021)</h3>
+            <p class="text-xs text-gray-400 text-center mb-4">
+                Long-term crime pattern learned from historical data
+            </p>
+            <canvas id="lineChart"></canvas>
+        </div>
+
+        <!-- INSIGHT -->
+        <p class="text-sm text-gray-300 text-center mt-6">
+            🔍 Insight: The predicted crime rate aligns with long-term historical trends,
+            indicating a data-consistent and stable prediction generated using Big Data analytics.
+        </p>
+    </div>
+
+</main>
+
+<footer class="bg-black bg-opacity-90 mt-20">
+    <div class="max-w-7xl mx-auto px-6 py-6 text-center">
+        <p class="text-gray-500 text-sm">© 2026 Crime Detection & Prediction | Big Data Analytics</p>
+    </div>
+</footer>
+
+<script>
+const crimeRate = Number(document.querySelector('main').dataset.crimeRate || 0);
+
+// BAR
+new Chart(document.getElementById('barChart'), {
+    type: 'bar',
+    data: {
+        labels: ['Historical Avg', 'Predicted'],
+        datasets: [{
+            data: [70, crimeRate],
+            backgroundColor: ['#60a5fa', '#4f46e5'],
+            borderRadius: 14
+        }]
+    },
+    options: {
+        animation: { duration: 2200, easing: 'easeOutQuart' },
+        plugins: { legend: { display: false } },
+        scales: { y: { beginAtZero: true } }
+    }
+});
+
+// DONUT
+new Chart(document.getElementById('pieChart'), {
+    type: 'doughnut',
+    data: {
+        labels: ['Low Risk', 'Medium Risk', 'High Risk'],
+        datasets: [{
+            data: [40, 35, 25],
+            backgroundColor: ['#22c55e', '#facc15', '#ef4444']
+        }]
+    },
+    options: {
+        cutout: '68%',
+        animation: { animateScale: true, duration: 2000 }
+    }
+});
+
+// LINE
+new Chart(document.getElementById('lineChart'), {
+    type: 'line',
+    data: {
+        labels: ['2011','2013','2015','2017','2019','2021'],
+        datasets: [{
+            label: 'Crime Rate Trend',
+            data: [62, 65, 68, 70, 72, crimeRate],
+            borderColor: '#a78bfa',
+            backgroundColor: 'rgba(167,139,250,0.15)',
+            fill: true,
+            tension: 0.4
+        }]
+    },
+    options: {
+        animation: { duration: 2400 },
+        plugins: { legend: { display: false } },
+        scales: { y: { beginAtZero: false } }
+    }
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Automated Violence Detection System</title>
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<style>
+
+.scan-line{
+animation:pulse 2s infinite;
+}
+
+.card-hover:hover{
+transform:scale(1.03);
+transition:0.3s;
+}
+
+</style>
+
+</head>
+
+<body class="bg-gradient-to-br from-gray-900 via-gray-800 to-black text-gray-200">
+
+<header class="bg-gradient-to-r from-red-700 to-gray-900 shadow-2xl">
+
+<div class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
+
+<div>
+
+<h1 class="text-3xl font-extrabold tracking-wide">
+🚨 Automated Violence Detection System
+</h1>
+
+<p class="text-sm opacity-90">
+Intelligent video-based monitoring and incident identification
+</p>
+
+</div>
+
+<span class="px-4 py-1 bg-black bg-opacity-30 rounded-full text-sm">
+Demo Module
+</span>
+
+</div>
+
+</header>
+
+
+<main class="max-w-7xl mx-auto px-6 py-10">
+
+
+<div class="flex justify-center mb-8">
+
+<div class="bg-gray-800 border border-green-500 rounded-full px-6 py-2 shadow-lg">
+
+<span class="text-green-400 font-semibold scan-line">
+🟢 AI Surveillance Engine Active
+</span>
+
+</div>
+
+</div>
+
+
+{% if not analysis %}
+
+<div class="bg-gray-800 rounded-2xl shadow-xl p-8 mb-10">
+
+<h2 class="text-2xl font-bold mb-6">
+📤 Upload Surveillance Footage
+</h2>
+
+<form action="/upload_video" method="POST" enctype="multipart/form-data">
+
+<label class="flex flex-col items-center justify-center w-full h-48 border-2 border-dashed border-gray-600 rounded-xl cursor-pointer hover:bg-gray-700 transition">
+
+<i class="fas fa-cloud-upload-alt fa-3x text-gray-400"></i>
+
+<p class="pt-4 text-gray-400 text-sm">
+Click to upload video (MP4 / AVI / MKV)
+</p>
+
+<input
+type="file"
+name="video"
+accept="video/*"
+class="hidden"
+required
+onchange="document.getElementById('file-name').innerText=this.files[0].name"
+>
+
+</label>
+
+<p id="file-name" class="mt-3 text-sm text-center text-gray-400"></p>
+
+<div class="text-center">
+
+<button
+type="submit"
+class="mt-6 px-10 py-3 rounded-full bg-red-700 hover:bg-red-800 text-white font-bold shadow-lg transition"
+>
+🚀 Process Video
+</button>
+
+</div>
+
+</form>
+
+</div>
+
+{% endif %}
+
+
+
+{% if analysis %}
+
+<div class="bg-gray-800 rounded-2xl shadow-xl p-8 mb-10">
+
+<h3 class="text-xl font-semibold mb-3">
+🎬 Uploaded Video Preview
+</h3>
+
+<div class="flex justify-center">
+
+<video controls class="w-[900px] h-[450px] object-cover rounded-xl shadow-lg border border-gray-700">
+<source src="{{ video_url }}" type="video/mp4">
+</video>
+
+</div>
+
+
+<div class="bg-gray-800 rounded-2xl shadow-xl p-8 mb-10 border border-gray-700">
+
+<h2 class="text-2xl font-bold mb-6">
+📊 Detection Analysis Summary
+</h2>
+
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+
+<div class="bg-red-600 bg-opacity-20 border border-red-600 rounded-xl p-5 card-hover">
+<p class="text-sm text-red-300">Detection Status</p>
+<p class="text-2xl font-bold text-red-400">{{ analysis.status }}</p>
+</div>
+
+<div class="bg-yellow-500 bg-opacity-20 border border-yellow-500 rounded-xl p-5 card-hover">
+<p class="text-sm text-yellow-300">Confidence Level</p>
+<p class="text-2xl font-bold text-yellow-400">{{ analysis.confidence }}</p>
+</div>
+
+<div class="bg-purple-600 bg-opacity-20 border border-purple-600 rounded-xl p-5 card-hover">
+<p class="text-sm text-purple-300">Crime Classification</p>
+<p class="text-xl font-bold text-purple-400">{{ analysis.crime_type }}</p>
+</div>
+
+<div class="bg-pink-600 bg-opacity-20 border border-pink-600 rounded-xl p-5 card-hover">
+<p class="text-sm text-pink-300">Violence Severity Score</p>
+<p class="text-xl font-bold text-pink-400">{{ analysis.severity_score }}/100</p>
+</div>
+
+<div class="bg-blue-600 bg-opacity-20 border border-blue-600 rounded-xl p-5 card-hover">
+<p class="text-sm text-blue-300">Behavioral Anomaly Index</p>
+<p class="text-xl font-bold text-blue-400">{{ analysis.anomaly_index }}</p>
+</div>
+
+<div class="bg-red-500 bg-opacity-20 border border-red-500 rounded-xl p-5 card-hover">
+<p class="text-sm text-red-300">Threat Risk Level</p>
+<p class="text-xl font-bold text-red-400">{{ analysis.risk_level }}</p>
+</div>
+
+<div class="bg-indigo-600 bg-opacity-20 border border-indigo-600 rounded-xl p-5 card-hover">
+<p class="text-sm text-indigo-300">Time-Based Analysis</p>
+<p class="text-xl font-bold text-indigo-400">{{ analysis.time_pattern }}</p>
+</div>
+
+<div class="bg-green-600 bg-opacity-20 border border-green-600 rounded-xl p-5 card-hover">
+<p class="text-sm text-green-300">Context Environment</p>
+<p class="text-xl font-bold text-green-400">{{ analysis.context_type }}</p>
+</div>
+
+<div class="bg-blue-600 bg-opacity-20 border border-blue-600 rounded-xl p-5 card-hover">
+<p class="text-sm text-blue-300">Motion Disturbance Score</p>
+<p class="text-xl font-bold text-blue-400">{{ analysis.motion_score }}%</p>
+</div>
+
+
+<div class="mt-6 p-6 bg-blue-900 bg-opacity-30 rounded-xl border border-blue-500 w-full lg:col-span-3">
+
+<p class="text-gray-200 text-lg leading-relaxed">
+
+<b class="text-blue-300 text-xl">Crime Intelligence Summary:</b><br><br>
+
+The incident demonstrates <b class="text-white">{{ analysis.deviation_score }}%</b>
+within a <b class="text-blue-300">{{ analysis.context_type }}</b>.
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<div class="bg-gray-800 rounded-2xl shadow-xl p-8 mb-10 border border-gray-700">
+
+<h2 class="text-2xl font-bold mb-6 text-gray-200">
+📊 Violence Analytics Overview
+</h2>
+
+<canvas
+id="violenceChart"
+data-severity="{{ analysis.severity_score }}"
+data-motion="{{ analysis.motion_score }}"
+data-anomaly="{{ analysis.anomaly_index }}">
+</canvas>
+
+</div>
+
+{% endif %}
+
+
+
+<div class="bg-gray-800 rounded-2xl shadow-xl p-8">
+
+<h2 class="text-2xl font-bold mb-4">
+📡 Live Camera Monitoring
+</h2>
+
+<p class="text-gray-400 mb-6">
+Live camera-based violence monitoring is under development.
+</p>
+
+<button disabled class="px-8 py-3 rounded-full bg-gray-600 text-gray-300 cursor-not-allowed">
+Live Monitoring (Coming Soon)
+</button>
+
+</div>
+
+
+<footer class="bg-black bg-opacity-90 mt-14">
+
+<div class="max-w-7xl mx-auto px-6 py-6 text-center">
+
+<p class="text-gray-500 text-sm">
+© 2026 Automated Violence Detection System | Flask • Video Analytics • Surveillance Systems
+</p>
+
+</div>
+
+</footer>
+
+
+
+{% if analysis %}
+
+<script>
+
+const chartCanvas = document.getElementById("violenceChart");
+
+if(chartCanvas){
+
+const severity = parseFloat(chartCanvas.dataset.severity) || 0;
+const motion = parseFloat(chartCanvas.dataset.motion) || 0;
+const anomaly = (parseFloat(chartCanvas.dataset.anomaly) * 100) || 0;
+
+new Chart(chartCanvas,{
+
+type:'bar',
+
+data:{
+labels:[
+'Violence Severity',
+'Motion Disturbance',
+'Behavioral Anomaly'
+],
+
+datasets:[{
+label:'AI Analysis Metrics',
+data:[severity,motion,anomaly],
+backgroundColor:[
+'rgba(239,68,68,0.7)',
+'rgba(59,130,246,0.7)',
+'rgba(168,85,247,0.7)'
+],
+borderRadius:6
+}]
+
+},
+
+options:{
+plugins:{legend:{display:false}},
+scales:{y:{beginAtZero:true}}
+}
+
+});
+
+}
+
+</script>
+
+{% endif %}
+
+</body>
+</html>
