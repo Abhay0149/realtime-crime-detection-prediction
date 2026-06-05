@@ -1,4 +1,3 @@
-```python
 # ===== STEP 1: WARNINGS IGNORE =====
 import warnings
 warnings.filterwarnings("ignore")
@@ -17,13 +16,14 @@ crime_bp = Blueprint('crime', __name__)
 # ===== STEP 5: LOAD MODEL =====
 model = pickle.load(open('model.pkl', 'rb'))
 
-# 🔥 HOTFIX: sklearn version mismatch
+# ===== HOTFIX =====
 if not hasattr(model, "monotonic_cst"):
     model.monotonic_cst = None
 
 print("Crime Prediction Model Loaded Successfully")
 
 # ===== STEP 6: ROUTES =====
+
 @crime_bp.route('/')
 def index():
     return render_template("prediction.html")
@@ -32,7 +32,7 @@ def index():
 @crime_bp.route('/predict', methods=['POST'])
 def predict_result():
 
-    # City mapping
+    # ===== CITY MAPPING =====
     city_names = {
         '0': 'Ahmedabad',
         '1': 'Bengaluru',
@@ -55,6 +55,7 @@ def predict_result():
         '18': 'Surat'
     }
 
+    # ===== CRIME TYPES =====
     crimes_names = {
         '0': 'Crime Committed by Juveniles',
         '1': 'Crime against SC',
@@ -68,6 +69,7 @@ def predict_result():
         '9': 'Murder'
     }
 
+    # ===== POPULATION DATA =====
     population = {
         '0': 63.50,
         '1': 85.00,
@@ -97,7 +99,7 @@ def predict_result():
 
     pop = population[city_code]
 
-    # Population adjustment
+    # ===== POPULATION ADJUSTMENT =====
     year_diff = year - 2011
     pop = pop + (0.01 * year_diff * pop)
 
@@ -148,4 +150,3 @@ app.register_blueprint(crime_bp)
 # ===== RUN SERVER =====
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=10000)
-```
