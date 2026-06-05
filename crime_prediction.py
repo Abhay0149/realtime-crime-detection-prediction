@@ -7,7 +7,7 @@ from flask import Flask, Blueprint, request, render_template
 import pickle
 import math
 
-# ===== STEP 3: FLASK APP =====
+# ===== STEP 3: CREATE FLASK APP =====
 app = Flask(__name__)
 
 # ===== STEP 4: BLUEPRINT =====
@@ -22,13 +22,17 @@ if not hasattr(model, "monotonic_cst"):
 
 print("Crime Prediction Model Loaded Successfully")
 
-# ===== STEP 6: ROUTES =====
-
+# ===== HOME PAGE =====
 @crime_bp.route('/')
-def index():
+def home():
+    return render_template("index.html")
+
+# ===== PREDICTION PAGE =====
+@crime_bp.route('/prediction')
+def prediction():
     return render_template("prediction.html")
 
-
+# ===== PREDICT ROUTE =====
 @crime_bp.route('/predict', methods=['POST'])
 def predict_result():
 
@@ -69,7 +73,7 @@ def predict_result():
         '9': 'Murder'
     }
 
-    # ===== POPULATION DATA =====
+    # ===== POPULATION =====
     population = {
         '0': 63.50,
         '1': 85.00,
@@ -147,6 +151,6 @@ def predict_result():
 # ===== REGISTER BLUEPRINT =====
 app.register_blueprint(crime_bp)
 
-# ===== RUN SERVER =====
+# ===== RUN APP =====
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=10000)
