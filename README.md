@@ -80,6 +80,6 @@ Contributions are welcome! To contribute to this project, follow these steps:
 
 ## Contact Information
 
-* **Repository Owner:** Abhay Tiwari
+* **Repository Owner:** Abhay Tiwari, Shreya Singh
 * **GitHub:** https://github.com/Abhay0149
 * **Email:** [abhaytiwari8807qp@gmail.com](mailto:abhaytiwari8807qp@gmail.com)
